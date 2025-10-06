@@ -1,6 +1,10 @@
 # Team_calculator
 Team calculator 21312 group
        
+# Функции писать в файл calculator.cpp 
+Для каждой функуии уже готовы свои Func с комментарием
+
+
 # Tusk for Team
 <br> 1 Маргарита + <br>
 <br> 2 Юля - <br>
@@ -12,6 +16,3 @@ Team calculator 21312 group
 <br> 8 Алексей  % <br>
 <br> 9 Максим А. log <br>
 <br> 10 Илья ! <br>
-
-# Функции писать в файл calculator.cpp 
-Для каждой функуии уже готовы свои Func с комментарием
