@@ -4,6 +4,19 @@ Team calculator 21312 group
 # Функции писать в файл calculator.cpp 
 Для каждой функуии уже готовы свои Func с комментарием
 
+Пример
+
+```c++
+
+// функция "Ваша функция". ФИО
+
+int func(){
+
+your code
+
+}
+
+```
 
 # Tusk for Team
 <br> 1 Маргарита + <br>
