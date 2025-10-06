@@ -1,132 +1,202 @@
 #include <iostream>
 #include <cmath>
 #include <stdexcept>
+#include <limits>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <cstdlib>
+#endif
 
 using namespace std;
 
 class Calculator {
 public:
-    // Бинарные операции
+    // Binary operations
 
-     // Маргарита +
-    double add(double a, double b) {
+    // Маргарита +
+    double add(double a, double b) { 
+        
+    }
+    //Юля -
+    double subtract(double a, double b) {
+        
+    }
+    //  Иван *
+    double multiply(double a, double b) {
 
-}
+    }
+    // Арсений :
+    double divide(double a, double b) {
+       
+    }
+    //Алексей %
+    double modulo(double a, double b) {
+        
+    }
 
-     //Юля -
-   double subtract(double a, double b{ 
-      
-}
+    // Unary operations 
+     //Андрей |_|
 
-    //  Иван *
-   double multiply(double a, double b){ 
-      
-}
+    double modul(double a) {
 
-// Арсений :
-    double divide(double a, double b) {
-        
-    }
+    }
 
-//Алексей %
-    int mod(int a, int b) {
-       
-    }
+    //Богдан sqr
+    double sqr(double x) {
+       
+    }
+    //Игорь sqrt 
+    double sqrt(double x) {
+       
+    }
+    // Максим А. log 
 
-    // Унарные операции
-
-      //Андрей |_|
-    double absolute(double a) {
-
-}
-
-//Богдан sqr
-    double square(double a) {
-
-}
-
-//Игорь sqrt 
-    double squareRoot(double a) {
-        
-    }
-// Максим А. log 
-    
-    }
-//Илья !
-    unsigned long long factorial(int n) {
-        
-    }
+    double log(double x) {
+        
+    }
+    //Илья !
+    long long factorial(int n) {
+       
+    }
 };
 
+class CalculatorInterface {
+private:
+    Calculator calc;
+
+    void clearScreen() {
+#ifdef _WIN32
+        system("cls");
+#else
+        system("clear");
+#endif
+    }
+
+    void waitForEnter() {
+        cout << "\nPress Enter to continue...";
+        cin.ignore(10000, '\n');
+        cin.get();
+    }
+
+    void showMenu() {
+        clearScreen();
+        cout << "=== ADVANCED CALCULATOR ===\n\n"
+            << "Available operations:\n"
+            << "+  Addition\n"
+            << "-  Subtraction\n"
+            << "*  Multiplication\n"
+            << "/  Division\n"
+            << "%  Modulo\n"
+            << "s  Square\n"
+            << "q  Square root\n"
+            << "l  Logarithm\n"
+            << "!  Factorial\n"
+            << "0  Exit\n\n";
+    }
+
+public:
+    void run() {
+        char operation;
+        double a, b;
+        int n;
+
+        while (true) {
+            showMenu();
+            cout << "Choose operation: ";
+            cin >> operation;
+
+            if (operation == '0') break;
+
+            try {
+                clearScreen();
+                cout << "=== ADVANCED CALCULATOR ===\n\n";
+
+                switch (operation) {
+                case '+':
+                    cout << "ADDITION\n";
+                    cout << "Enter two numbers: ";
+                    cin >> a >> b;
+                    cout << "Result: " << a << " + " << b << " = " << calc.add(a, b) << "\n";
+                    break;
+                case '-':
+                    cout << "SUBTRACTION\n";
+                    cout << "Enter two numbers: ";
+                    cin >> a >> b;
+                    cout << "Result: " << a << " - " << b << " = " << calc.subtract(a, b) << "\n";
+                    break;
+                case '*':
+                    cout << "MULTIPLICATION\n";
+                    cout << "Enter two numbers: ";
+                    cin >> a >> b;
+                    cout << "Result: " << a << " * " << b << " = " << calc.multiply(a, b) << "\n";
+                    break;
+                case '/':
+                    cout << "DIVISION\n";
+                    cout << "Enter two numbers: ";
+                    cin >> a >> b;
+                    cout << "Result: " << a << " / " << b << " = " << calc.divide(a, b) << "\n";
+                    break;
+                case '%':
+                    cout << "MODULO\n";
+                    cout << "Enter two numbers: ";
+                    cin >> a >> b;
+                    cout << "Result: " << a << " % " << b << " = " << calc.modulo(a, b) << "\n";
+                    break;
+                case 's':
+                    cout << "SQUARE\n";
+                    cout << "Enter a number: ";
+                    cin >> a;
+                    cout << "Result: " << a << "^2 = " << calc.sqr(a) << "\n";
+                    break;
+                case 'q':
+                    cout << "SQUARE ROOT\n";
+                    cout << "Enter a number: ";
+                    cin >> a;
+                    cout << "Result: sqrt(" << a << ") = " << calc.sqrt(a) << "\n";
+                    break;
+                case 'l':
+                    cout << "LOGARITHM\n";
+                    cout << "Enter a number: ";
+                    cin >> a;
+                    cout << "Result: ln(" << a << ") = " << calc.log(a) << "\n";
+                    break;
+                case '!':
+                    cout << "FACTORIAL\n";
+                    cout << "Enter an integer: ";
+                    cin >> n;
+                    cout << "Result: " << n << "! = " << calc.factorial(n) << "\n";
+                    break;
+                case 'm':
+                    cout << "Module\n";
+                    cout << "Enter an negative number: ";
+                    cin >> n;
+                    cout << "Result: " << n << "! = " << calc.modul(n) << "\n";
+                    break;
+                default:
+                    cout << "Unknown operation!\n";
+                }
+
+                waitForEnter();
+
+            }
+            catch (const exception& e) {
+                clearScreen();
+                cout << "=== ADVANCED CALCULATOR ===\n\n";
+                cout << "Error: " << e.what() << "\n";
+                waitForEnter();
+            }
+        }
+
+        clearScreen();
+        cout << "=== ADVANCED CALCULATOR ===\n\n";
+        cout << "Thank you for using the calculator!\n";
+    }
+};
 
 int main() {
-    Calculator calc;
-    char operation;
-    double a, b;
-    int intA, intB;
-
-    cout << "Доступные операции: + - * / % (остаток) a (abs) s (square) r (sqrt) l (log) f (factorial)\n";
-    cout << "Введите операцию: ";
-    cin >> operation;
-
-    try {
-        switch (operation) {
-            case '+':
-                cout << "Введите два числа: ";
-                cin >> a >> b;
-                cout << "Результат: " << calc.add(a, b) << endl;
-                break;
-            case '-':
-                cout << "Введите два числа: ";
-                cin >> a >> b;
-                cout << "Результат: " << calc.subtract(a, b) << endl;
-                break;
-            case '*':
-                cout << "Введите два числа: ";
-                cin >> a >> b;
-                cout << "Результат: " << calc.multiply(a, b) << endl;
-                break;
-            case '/':
-                cout << "Введите два числа: ";
-                cin >> a >> b;
-                cout << "Результат: " << calc.divide(a, b) << endl;
-                break;
-            case '%':
-                cout << "Введите два целых числа: ";
-                cin >> intA >> intB;
-                cout << "Результат: " << calc.mod(intA, intB) << endl;
-                break;
-            case 'a':
-                cout << "Введите число: ";
-                cin >> a;
-                cout << "Результат: " << calc.absolute(a) << endl;
-                break;
-            case 's':
-                cout << "Введите число: ";
-                cin >> a;
-                cout << "Результат: " << calc.square(a) << endl;
-                break;
-            case 'r':
-                cout << "Введите число: ";
-                cin >> a;
-                cout << "Результат: " << calc.squareRoot(a) << endl;
-                break;
-            case 'l':
-                cout << "Введите число: ";
-                cin >> a;
-                cout << "Результат: " << calc.logarithm(a) << endl;
-                break;
-            case 'f':
-                cout << "Введите целое число: ";
-                cin >> intA;
-                cout << "Результат: " << calc.factorial(intA) << endl;
-                break;
-            default:
-                cout << "Неизвестная операция!" << endl;
-        }
-    } catch (const exception& e) {
-        cout << "Ошибка: " << e.what() << endl;
-    }
-
-    return 0;
+    CalculatorInterface ci;
+    ci.run();
+    return 0;
 }
