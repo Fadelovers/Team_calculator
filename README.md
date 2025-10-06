@@ -10,7 +10,7 @@ Team calculator 21312 group
 
 // функция "Ваша функция". ФИО
 
-int func(){
+double func(){
 
 your code
 
