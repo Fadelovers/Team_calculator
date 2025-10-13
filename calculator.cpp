@@ -40,7 +40,7 @@ public:
      //Андрей |_|
 
     double modul(double a) {
-
+	return abs(a);
     }
 
     //Богдан sqr
@@ -89,6 +89,7 @@ private:
             << "*  Multiplication\n"
             << "/  Division\n"
             << "%  Modulo\n"
+	    << "|  Modul\n"
             << "s  Square\n"
             << "q  Square root\n"
             << "l  Logarithm\n"
