@@ -50,7 +50,7 @@ public:
     //Игорь sqrt 
     double sqrt(double x) {
         if (x < 0) throw runtime_error("Square root of negative number!");
-        return std::sqrt(x);
+        return sqrt(x);
     }
     // Максим А. log 
 
