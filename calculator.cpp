@@ -61,7 +61,12 @@ public:
     }
     //Илья !
     long long factorial(int n) {
-
+        if (n < 0) throw runtime_error("Factorial of negative number!");
+        long long result = 1;
+        for (int i = 2; i <= n; ++i){
+            result *= i;
+        } 
+        return result;
     }
 };
 
