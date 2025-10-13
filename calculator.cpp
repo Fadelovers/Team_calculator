@@ -145,6 +145,12 @@ public:
                     cin >> a >> b;
                     cout << "Result: " << a << " % " << b << " = " << calc.modulo(a, b) << "\n";
                     break;
+		case '|':
+		    cout << "MODUL\n";
+		    cout << "Enter a number: ";
+		    cin >> a;
+		    cout << "Result: " << "|" << a << "|" << " = " << calc.modul(a) << "\n";
+		    break;
                 case 's':
                     cout << "SQUARE\n";
                     cout << "Enter a number: ";
