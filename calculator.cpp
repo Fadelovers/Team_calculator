@@ -16,12 +16,12 @@ public:
     // Binary operations
 
     // Маргарита +
-    double add(double a, double b) { 
-        
+    double add(double a, double b) {
+
     }
     //Юля -
     double subtract(double a, double b) {
-        
+
     }
     //  Иван *
     double multiply(double a, double b) {
@@ -29,14 +29,17 @@ public:
     }
     // Арсений :
     double divide(double a, double b) {
-       
+
     }
     //Алексей %
     double modulo(double a, double b) {
-        
+        if (b == 0.0) {
+            throw invalid_argument('Модуль от деления на ноль не определён');
+        }
+        return fmod(a, b);
     }
 
-    // Unary operations 
+    // Unary operations
      //Андрей |_|
 
     double modul(double a) {
@@ -45,20 +48,20 @@ public:
 
     //Богдан sqr
     double sqr(double x) {
-       
+
     }
-    //Игорь sqrt 
+    //Игорь sqrt
     double sqrt(double x) {
-       
+
     }
-    // Максим А. log 
+    // Максим А. log
 
     double log(double x) {
-        
+
     }
     //Илья !
     long long factorial(int n) {
-       
+
     }
 };
 
