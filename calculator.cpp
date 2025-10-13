@@ -43,7 +43,7 @@ public:
      //Андрей |_|
 
     double modul(double a) {
-
+	return abs(a);
     }
 
     //Богдан sqr
@@ -98,6 +98,7 @@ private:
             << "*  Multiplication\n"
             << "/  Division\n"
             << "%  Modulo\n"
+	    << "|  Modul\n"
             << "s  Square\n"
             << "q  Square root\n"
             << "l  Logarithm\n"
@@ -153,6 +154,12 @@ public:
                     cin >> a >> b;
                     cout << "Result: " << a << " % " << b << " = " << calc.modulo(a, b) << "\n";
                     break;
+		case '|':
+		    cout << "MODUL\n";
+		    cout << "Enter a number: ";
+		    cin >> a;
+		    cout << "Result: " << "|" << a << "|" << " = " << calc.modul(a) << "\n";
+		    break;
                 case 's':
                     cout << "SQUARE\n";
                     cout << "Enter a number: ";
