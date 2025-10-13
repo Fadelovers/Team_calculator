@@ -26,6 +26,6 @@ your code
 <br> 5 Арсений : <br>
 <br> 6 Богдан sqr <br>
 <br> 7 Игорь sqrt <br>
-<br> 8 Алексей  % <br>
+<br> 8 Алексей  %  ✔️ <br> 
 <br> 9 Максим А. log <br>
 <br> 10 Илья ! <br>
