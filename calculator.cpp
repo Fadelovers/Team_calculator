@@ -1,218 +1,199 @@
 #include <iostream>
 #include <cmath>
 #include <stdexcept>
-#include <limits>
-
-#ifdef _WIN32
-#include <windows.h>
-#else
 #include <cstdlib>
-#endif
 
 using namespace std;
 
-class Calculator {
+// Base operation class
+class MathOperation {
 public:
-    // Binary operations
+    virtual ~MathOperation() = default;
+    virtual double calculate(double a, double b = 0) const = 0;
+    virtual string getName() const = 0;
+    virtual bool isBinary() const = 0;
+};
 
-    // Маргарита +
-    double add(double a, double b) {
+// Concrete operation classes
+class Add : public MathOperation {
+public:
+    double calculate(double a, double b) const override { return a + b; }
+    string getName() const override { return "Addition"; }
+    bool isBinary() const override { return true; }
+};
 
+class Subtract : public MathOperation {
+public:
+    double calculate(double a, double b) const override { return a - b; }
+    string getName() const override { return "Subtraction"; }
+    bool isBinary() const override { return true; }
+};
+
+class Multiply : public MathOperation {
+public:
+    double calculate(double a, double b) const override { return a * b; }
+    string getName() const override { return "Multiplication"; }
+    bool isBinary() const override { return true; }
+};
+
+class Divide : public MathOperation {
+public:
+    double calculate(double a, double b) const override {
+        if (b == 0) throw runtime_error("Division by zero!");
+        return a / b;
     }
-    //Юля -
-    double subtract(double a, double b) {
+    string getName() const override { return "Division"; }
+    bool isBinary() const override { return true; }
+};
 
-    }
-    //  Иван *
-    double multiply(double a, double b) {
-
-    }
-    // Арсений :
-    double divide(double a, double b) {
-
-    }
-    //Алексей %
-    double modulo(double a, double b) {
-        if (b == 0.0) {
-            throw invalid_argument('Модуль от деления на ноль не определён');
-        }
+class Modulus : public MathOperation {
+public:
+    double calculate(double a, double b) const override {
+        if (b == 0) throw runtime_error("Modulus by zero!");
         return fmod(a, b);
     }
-
-    // Unary operations
-     //Андрей |_|
-
-    double modul(double a) {
-	return abs(a);
-    }
-
-    //Богдан sqr
-    double sqr(double x) {
-
-    }
-    //Игорь sqrt
-    double sqrt(double x) {
-        if (x < 0) throw runtime_error("Square root of negative number!");
-        return sqrt(x);
-    }
-    // Максим А. log
-
-    double log(double x) {
-
-    }
-    //Илья !
-    long long factorial(int n) {
-        if (n < 0) throw runtime_error("Factorial of negative number!");
-        long long result = 1;
-        for (int i = 2; i <= n; ++i){
-            result *= i;
-        } 
-        return result;
-    }
+    string getName() const override { return "Modulus"; }
+    bool isBinary() const override { return true; }
 };
 
-class CalculatorInterface {
-private:
-    Calculator calc;
 
-    void clearScreen() {
-#ifdef _WIN32
-        system("cls");
-#else
-        system("clear");
-#endif
-    }
-
-    void waitForEnter() {
-        cout << "\nPress Enter to continue...";
-        cin.ignore(10000, '\n');
-        cin.get();
-    }
-
-    void showMenu() {
-        clearScreen();
-        cout << "=== ADVANCED CALCULATOR ===\n\n"
-            << "Available operations:\n"
-            << "+  Addition\n"
-            << "-  Subtraction\n"
-            << "*  Multiplication\n"
-            << "/  Division\n"
-            << "%  Modulo\n"
-	    << "|  Modul\n"
-            << "s  Square\n"
-            << "q  Square root\n"
-            << "l  Logarithm\n"
-            << "!  Factorial\n"
-            << "0  Exit\n\n";
-    }
-
+class Absolute : public MathOperation {
 public:
-    void run() {
-        char operation;
-        double a, b;
-        int n;
-
-        while (true) {
-            showMenu();
-            cout << "Choose operation: ";
-            cin >> operation;
-
-            if (operation == '0') break;
-
-            try {
-                clearScreen();
-                cout << "=== ADVANCED CALCULATOR ===\n\n";
-
-                switch (operation) {
-                case '+':
-                    cout << "ADDITION\n";
-                    cout << "Enter two numbers: ";
-                    cin >> a >> b;
-                    cout << "Result: " << a << " + " << b << " = " << calc.add(a, b) << "\n";
-                    break;
-                case '-':
-                    cout << "SUBTRACTION\n";
-                    cout << "Enter two numbers: ";
-                    cin >> a >> b;
-                    cout << "Result: " << a << " - " << b << " = " << calc.subtract(a, b) << "\n";
-                    break;
-                case '*':
-                    cout << "MULTIPLICATION\n";
-                    cout << "Enter two numbers: ";
-                    cin >> a >> b;
-                    cout << "Result: " << a << " * " << b << " = " << calc.multiply(a, b) << "\n";
-                    break;
-                case '/':
-                    cout << "DIVISION\n";
-                    cout << "Enter two numbers: ";
-                    cin >> a >> b;
-                    cout << "Result: " << a << " / " << b << " = " << calc.divide(a, b) << "\n";
-                    break;
-                case '%':
-                    cout << "MODULO\n";
-                    cout << "Enter two numbers: ";
-                    cin >> a >> b;
-                    cout << "Result: " << a << " % " << b << " = " << calc.modulo(a, b) << "\n";
-                    break;
-		case '|':
-		    cout << "MODUL\n";
-		    cout << "Enter a number: ";
-		    cin >> a;
-		    cout << "Result: " << "|" << a << "|" << " = " << calc.modul(a) << "\n";
-		    break;
-                case 's':
-                    cout << "SQUARE\n";
-                    cout << "Enter a number: ";
-                    cin >> a;
-                    cout << "Result: " << a << "^2 = " << calc.sqr(a) << "\n";
-                    break;
-                case 'q':
-                    cout << "SQUARE ROOT\n";
-                    cout << "Enter a number: ";
-                    cin >> a;
-                    cout << "Result: sqrt(" << a << ") = " << calc.sqrt(a) << "\n";
-                    break;
-                case 'l':
-                    cout << "LOGARITHM\n";
-                    cout << "Enter a number: ";
-                    cin >> a;
-                    cout << "Result: ln(" << a << ") = " << calc.log(a) << "\n";
-                    break;
-                case '!':
-                    cout << "FACTORIAL\n";
-                    cout << "Enter an integer: ";
-                    cin >> n;
-                    cout << "Result: " << n << "! = " << calc.factorial(n) << "\n";
-                    break;
-                case 'm':
-                    cout << "Module\n";
-                    cout << "Enter an negative number: ";
-                    cin >> n;
-                    cout << "Result: " << n << "! = " << calc.modul(n) << "\n";
-                    break;
-                default:
-                    cout << "Unknown operation!\n";
-                }
-
-                waitForEnter();
-
-            }
-            catch (const exception& e) {
-                clearScreen();
-                cout << "=== ADVANCED CALCULATOR ===\n\n";
-                cout << "Error: " << e.what() << "\n";
-                waitForEnter();
-            }
-        }
-
-        clearScreen();
-        cout << "=== ADVANCED CALCULATOR ===\n\n";
-        cout << "Thank you for using the calculator!\n";
-    }
+    double calculate(double a, double b = 0) const override { return abs(a); }
+    string getName() const override { return "Absolute value"; }
+    bool isBinary() const override { return false; }
 };
+
+class Square : public MathOperation {
+public:
+    double calculate(double a, double b = 0) const override { return a * a; }
+    string getName() const override { return "Square"; }
+    bool isBinary() const override { return false; }
+};
+
+class SquareRoot : public MathOperation {
+public:
+    double calculate(double a, double b = 0) const override {
+        if (a < 0) throw runtime_error("Square root of negative number!");
+        return sqrt(a);
+    }
+    string getName() const override { return "Square root"; }
+    bool isBinary() const override { return false; }
+};
+
+class Logarithm : public MathOperation {
+public:
+    double calculate(double a, double b = 0) const override {
+        if (a <= 0) throw runtime_error("Logarithm of non-positive number!");
+        return log(a);
+    }
+    string getName() const override { return "Natural logarithm"; }
+    bool isBinary() const override { return false; }
+};
+
+class Factorial : public MathOperation {
+public:
+    double calculate(double a, double b = 0) const override {
+        if (a < 0) throw runtime_error("Factorial of negative number!");
+        if (floor(a) != a) throw runtime_error("Factorial of non-integer number!");
+        
+        unsigned long long result = 1;
+        for (int i = 2; i <= static_cast<int>(a); ++i) {
+            result *= i;
+        }
+        return static_cast<double>(result);
+    }
+    string getName() const override { return "Factorial"; }
+    bool isBinary() const override { return false; }
+};
+
+class LogarithmBase10 : public MathOperation {
+public:
+    double calculate(double a, double b = 0) const override {
+        if (a <= 0) throw runtime_error("Logarithm of non-positive number!");
+        return log10(a);
+    }
+    string getName() const override { return "Logarithm base 10"; }
+    bool isBinary() const override { return false; }
+};
+// Function to clear screen (cross-platform)
+void clearScreen() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
 
 int main() {
-    CalculatorInterface ci;
-    ci.run();
+    char op;
+    
+    while (true) {
+        clearScreen();
+        cout << "=== Simple OOP Calculator ===\n";
+        cout << "Available operations:\n";
+        cout << "+ - addition\n- - subtraction\n* - multiplication\n/ - division\n";
+        cout << "% - modulus\n^ - power\na - absolute value\ns - square\nr - square root\n";
+        cout << "l - natural logarithm\nL - logarithm base 10\nf - factorial\nq - quit\n";
+        
+        cout << "Enter operation: ";
+        cin >> op;
+        
+        // Check if user wants to quit
+        if (op == 'q' || op == 'Q') {
+            cout << "Goodbye!\n";
+            break;
+        }
+        
+        MathOperation* operation = nullptr;
+        
+        // Create operation object
+        switch(op) {
+            case '+': operation = new Add(); break;
+            case '-': operation = new Subtract(); break;
+            case '*': operation = new Multiply(); break;
+            case '/': operation = new Divide(); break;
+            case '%': operation = new Modulus(); break;
+            case 'a': operation = new Absolute(); break;
+            case 's': operation = new Square(); break;
+            case 'r': operation = new SquareRoot(); break;
+            case 'l': operation = new Logarithm(); break;
+            case 'f': operation = new Factorial(); break;
+            default:
+                cout << "Unknown operation! Please try again.\n";
+                cout << "Press Enter to continue...";
+                cin.ignore();
+                cin.get();
+                continue; // Skip the rest and show menu again
+        }
+        
+        try {
+            clearScreen();
+            if (operation->isBinary()) {
+                double a, b;
+                cout << "Enter two numbers: ";
+                cin >> a >> b;
+                clearScreen();
+                cout << "Result: " << operation->calculate(a, b) << endl;
+            } else {
+                double a;
+                cout << "Enter a number: ";
+                cin >> a;
+                clearScreen();
+                cout << "Result: " << operation->calculate(a) << endl;
+            }
+        } catch (const exception& e) {
+            clearScreen();
+            cout << "Error: " << e.what() << endl;
+        }
+        
+        delete operation;
+        
+        // Wait for user to continue
+        cout << "\nPress Enter to continue...";
+        cin.ignore();
+        cin.get();
+    }
+    
     return 0;
 }
