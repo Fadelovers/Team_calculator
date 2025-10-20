@@ -23,7 +23,7 @@ public:
 
 class YourFunc : public MathOperation {
 public:
-  double calculate(double a, double b) const override { Yourcode }
+  double calculate(double a, double b (= or != 0)) const override { Yourcode }
   string getName() const override { return "YourFunc"; }
    bool isBinary() const override { return true OR False; } 
 };
