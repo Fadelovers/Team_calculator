@@ -17,40 +17,44 @@ public:
 
 class Add : public MathOperation {
 public:
-    
+
 };
 
 class Subtract : public MathOperation {
 public:
-    
+
 };
 
 class Multiply : public MathOperation {
 public:
-	double calculate(double a, double b) const override { return a * b; } string getName() 
-	const override { return "Multiplication"; }
+	double calculate(double a, double b) const override { return a * b; } 
+  string getName() const override { return "Multiplication"; }
 	bool isBinary() const override {return true; }
 };
 
 class Divide : public MathOperation {
 public:
-    
+
 };
 
 class Modulus : public MathOperation {
 public:
-    
+    double calculate(double a, double b) const override {
+        if (b == 0) throw runtime_error("Division by zero in modulus!");
+        return fmod(a, b);
+    }
+    string getName() const override { return "Modulus"; }
+    bool isBinary() const override { return true; }
 };
-
 
 class Absolute : public MathOperation {
 public:
-    
+
 };
 
 class Square : public MathOperation {
 public:
-  
+
 };
 
 class SquareRoot : public MathOperation {
@@ -88,7 +92,7 @@ void clearScreen() {
 
 int main() {
     char op;
-    
+
     while (true) {
         clearScreen();
         cout << "=== Simple OOP Calculator ===\n";
@@ -96,18 +100,18 @@ int main() {
         cout << "+ - addition\n- - subtraction\n* - multiplication\n/ - division\n";
         cout << "% - modulus\n^ - power\na - absolute value\ns - square\nr - square root\n";
         cout << "l - natural logarithm\nL - logarithm base 10\nf - factorial\nq - quit\n";
-        
+
         cout << "Enter operation: ";
         cin >> op;
-        
+
         // Check if user wants to quit
         if (op == 'q' || op == 'Q') {
             cout << "Goodbye!\n";
             break;
         }
-        
+
         MathOperation* operation = nullptr;
-        
+
         // Create operation object
         switch(op) {
             case '+': operation = new Add(); break;
@@ -127,7 +131,7 @@ int main() {
                 cin.get();
                 continue; // Skip the rest and show menu again
         }
-        
+
         try {
             clearScreen();
             if (operation->isBinary()) {
@@ -147,15 +151,15 @@ int main() {
             clearScreen();
             cout << "Error: " << e.what() << endl;
         }
-        
+
         delete operation;
-        
+
         // Wait for user to continue
         cout << "\nPress Enter to continue...";
         cin.ignore();
         cin.get();
     }
-    
+
     return 0;
 }
 
