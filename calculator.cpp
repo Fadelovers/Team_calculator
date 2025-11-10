@@ -49,6 +49,9 @@ public:
 
 class Absolute : public MathOperation {
 public:
+	double calculate(double a, double b = 0)  const override { return abs(a); }
+        string getName() const override { return "Absolute"; }
+        bool isBinary() const override { return False; }
 
 };
 
