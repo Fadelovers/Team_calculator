@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// Base operation class
+
 class MathOperation {
 public:
     virtual ~MathOperation() = default;
@@ -14,7 +14,7 @@ public:
     virtual bool isBinary() const = 0;
 };
 
-// Concrete operation classes
+
 class Add : public MathOperation {
 public:
     
@@ -75,7 +75,7 @@ public:
     string getName() const override { return "Logarithm base 10"; }
     bool isBinary() const override { return false; }
 };
-// Function to clear screen (cross-platform)
+
 void clearScreen() {
     #ifdef _WIN32
         system("cls");
@@ -156,3 +156,4 @@ int main() {
     
     return 0;
 }
+
