@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 #include <stdexcept>
 #include <cstdlib>
@@ -17,31 +17,35 @@ public:
 
 class Add : public MathOperation {
 public:
-    
+
 };
 
 class Subtract : public MathOperation {
 public:
-    
+
 };
 
 class Multiply : public MathOperation {
 public:
-	double calculate(double a, double b) const override { return a * b; } string getName() 
-	const override { return "Multiplication"; }
+	double calculate(double a, double b) const override { return a * b; } 
+  string getName() const override { return "Multiplication"; }
 	bool isBinary() const override {return true; }
 };
 
 class Divide : public MathOperation {
 public:
-    
+
 };
 
 class Modulus : public MathOperation {
 public:
-    
+    double calculate(double a, double b) const override {
+        if (b == 0) throw runtime_error("Division by zero in modulus!");
+        return fmod(a, b);
+    }
+    string getName() const override { return "Modulus"; }
+    bool isBinary() const override { return true; }
 };
-
 
 class Absolute : public MathOperation {
 public:
@@ -53,12 +57,17 @@ public:
 
 class Square : public MathOperation {
 public:
-  
+
 };
 
 class SquareRoot : public MathOperation {
 public:
-
+    double calculate(double a, double b = 0) const override {
+        if (a < 0) throw runtime_error("Square root of negative number!");
+        return sqrt(a);
+    }
+    string getName() const override { return "Square root"; }
+    bool isBinary() const override { return false; }
 };
 
 class Logarithm : public MathOperation {
@@ -68,7 +77,19 @@ public:
 
 class Factorial : public MathOperation {
 public:
-
+    double calculate(double a, double b = 0) const override {
+        if (a < 0 || a != static_cast<int>(a)) {
+            throw runtime_error("Factorial is only defined for non-negative integers!");
+        }
+        int n = static_cast<int>(a);
+        double result = 1;
+        for (int i = 2; i <= n; ++i) {
+            result *= i;
+        }
+        return result;
+    }
+    string getName() const override { return "Factorial"; }
+    bool isBinary() const override { return false; }
 };
 
 class LogarithmBase10 : public MathOperation {
@@ -91,7 +112,7 @@ void clearScreen() {
 
 int main() {
     char op;
-    
+
     while (true) {
         clearScreen();
         cout << "=== Simple OOP Calculator ===\n";
@@ -99,18 +120,18 @@ int main() {
         cout << "+ - addition\n- - subtraction\n* - multiplication\n/ - division\n";
         cout << "% - modulus\n^ - power\na - absolute value\ns - square\nr - square root\n";
         cout << "l - natural logarithm\nL - logarithm base 10\nf - factorial\nq - quit\n";
-        
+
         cout << "Enter operation: ";
         cin >> op;
-        
+
         // Check if user wants to quit
         if (op == 'q' || op == 'Q') {
             cout << "Goodbye!\n";
             break;
         }
-        
+
         MathOperation* operation = nullptr;
-        
+
         // Create operation object
         switch(op) {
             case '+': operation = new Add(); break;
@@ -130,7 +151,7 @@ int main() {
                 cin.get();
                 continue; // Skip the rest and show menu again
         }
-        
+
         try {
             clearScreen();
             if (operation->isBinary()) {
@@ -150,15 +171,15 @@ int main() {
             clearScreen();
             cout << "Error: " << e.what() << endl;
         }
-        
+
         delete operation;
-        
+
         // Wait for user to continue
         cout << "\nPress Enter to continue...";
         cin.ignore();
         cin.get();
     }
-    
+
     return 0;
 }
 
