@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 #include <stdexcept>
 #include <cstdlib>
@@ -59,7 +59,12 @@ public:
 
 class SquareRoot : public MathOperation {
 public:
-
+    double calculate(double a, double b = 0) const override {
+        if (a < 0) throw runtime_error("Square root of negative number!");
+        return sqrt(a);
+    }
+    string getName() const override { return "Square root"; }
+    bool isBinary() const override { return false; }
 };
 
 class Logarithm : public MathOperation {
