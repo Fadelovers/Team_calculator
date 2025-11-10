@@ -27,7 +27,9 @@ public:
 
 class Multiply : public MathOperation {
 public:
-  
+	double calculate(double a, double b) const override { return a * b; } string getName() 
+	const override { return "Multiplication"; }
+	bool isBinary() const override {return true; }
 };
 
 class Divide : public MathOperation {
