@@ -33,7 +33,7 @@ public:
 # Tusk for Team
 <br> 1 Маргарита + <br>
 <br> 2 Юля - <br>
-<br> 3 Иван * <br>
+<br> 3 Иван * <br> ✅
 <br> 4 Андрей |_| <br>
 <br> 5 Арсений : <br>
 <br> 6 Богдан sqr <br>
