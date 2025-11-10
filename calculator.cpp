@@ -74,7 +74,19 @@ public:
 
 class Factorial : public MathOperation {
 public:
-
+    double calculate(double a, double b = 0) const override {
+        if (a < 0 || a != static_cast<int>(a)) {
+            throw runtime_error("Factorial is only defined for non-negative integers!");
+        }
+        int n = static_cast<int>(a);
+        double result = 1;
+        for (int i = 2; i <= n; ++i) {
+            result *= i;
+        }
+        return result;
+    }
+    string getName() const override { return "Factorial"; }
+    bool isBinary() const override { return false; }
 };
 
 class LogarithmBase10 : public MathOperation {
