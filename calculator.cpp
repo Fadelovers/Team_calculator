@@ -31,7 +31,17 @@ public:
 
 class Subtract : public MathOperation {
 public:
+  double calculate(double a, double b) const override {
+        return a - b;
+    }
 
+    string getName() const override {
+        return "Subtraction";
+    }
+
+    bool isBinary() const override {
+        return true;
+    }
 };
 
 class Multiply : public MathOperation {
@@ -191,5 +201,6 @@ int main() {
 
     return 0;
 }
+
 
 
