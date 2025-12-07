@@ -53,7 +53,12 @@ public:
 
 class Divide : public MathOperation {
 public:
-
+    double calculate(double a, double b) const override {
+        if (b == 0) throw runtime_error("Division by zero!");
+        return a / b;
+    }
+    string getName() const override { return "Division"; }
+    bool isBinary() const override { return true; }
 };
 
 class Modulus : public MathOperation {
@@ -201,6 +206,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
