@@ -52,7 +52,7 @@ public:
 };
 
 class Divide : public MathOperation {
-public:
+public: 
     double calculate(double a, double b) const override {
         if (b == 0) throw runtime_error("Division by zero!");
         return a / b;
@@ -206,6 +206,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
