@@ -76,9 +76,6 @@ public:
 
 class Square : public MathOperation {
 public:
-    double calculate(double a, double b = 0) const override { return a * a; }
-    string getName() const override { return "Square"; }
-    bool isBinary() const override { return false; }
 
 };
 
@@ -204,7 +201,6 @@ int main() {
 
     return 0;
 }
-
 
 
 
