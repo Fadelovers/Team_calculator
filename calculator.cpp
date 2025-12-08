@@ -58,7 +58,7 @@ public:
         return a / b;
     }
     string getName() const override { return "Division"; }
-    bool isBinary() const override { return true; }
+    bool isBinary() const override { return true; } 
 };
 
 class Modulus : public MathOperation {
