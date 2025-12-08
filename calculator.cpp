@@ -15,7 +15,7 @@ public:
 };
 
 
- // функция "Сложение". Маргарита Саралидзе
+ 
 class Addition : public MathOperation {
 public:
     double calculate(double a, double b) const override { 
