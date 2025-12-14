@@ -17,3 +17,5 @@
 Процент Алексей
 Факториал Илья
 ```
+
+![image](https://github.com/user-attachments/assets/392fc7d0-3596-4616-b353-34a6059b1a6d)
