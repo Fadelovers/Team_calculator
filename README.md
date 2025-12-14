@@ -28,4 +28,5 @@
 ![image](https://github.com/user-attachments/assets/ec92882d-c3f7-4f0c-bd46-8eecab193868)
 
 #Link on reales
+
 https://github.com/Fadelovers/Team_calculator/releases/tag/Fade
