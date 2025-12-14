@@ -97,11 +97,6 @@ public:
     bool isBinary() const override { return false; }
 };
 
-class Logarithm : public MathOperation {
-public:
-
-};
-
 class Factorial : public MathOperation {
 public:
     double calculate(double a, double b = 0) const override {
@@ -209,6 +204,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
