@@ -1,7 +1,9 @@
-﻿#include <iostream>
+
+#include <iostream>
 #include <cmath>
 #include <stdexcept>
 #include <cstdlib>
+
 
 using namespace std;
 
@@ -15,23 +17,23 @@ public:
 };
 
 
- 
+
 class Addition : public MathOperation {
 public:
-    double calculate(double a, double b) const override { 
-        return a + b; 
+    double calculate(double a, double b) const override {
+        return a + b;
     }
-    string getName() const override { 
-        return "Addition"; 
+    string getName() const override {
+        return "Addition";
     }
-    bool isBinary() const override { 
-        return true; 
+    bool isBinary() const override {
+        return true;
     }
 };
 
 class Subtract : public MathOperation {
 public:
-  double calculate(double a, double b) const override {
+    double calculate(double a, double b) const override {
         return a - b;
     }
 
@@ -46,19 +48,19 @@ public:
 
 class Multiply : public MathOperation {
 public:
-	double calculate(double a, double b) const override { return a * b; } 
-  string getName() const override { return "Multiplication"; }
-	bool isBinary() const override {return true; }
+    double calculate(double a, double b) const override { return a * b; }
+    string getName() const override { return "Multiplication"; }
+    bool isBinary() const override { return true; }
 };
 
 class Divide : public MathOperation {
-public: 
+public:
     double calculate(double a, double b) const override {
         if (b == 0) throw runtime_error("Division by zero!");
         return a / b;
     }
     string getName() const override { return "Division"; }
-    bool isBinary() const override { return true; } 
+    bool isBinary() const override { return true; }
 };
 
 class Modulus : public MathOperation {
@@ -73,9 +75,9 @@ public:
 
 class Absolute : public MathOperation {
 public:
-	double calculate(double a, double b = 0)  const override { return abs(a); }
-        string getName() const override { return "Absolute"; }
-        bool isBinary() const override { return False; }
+    double calculate(double a, double b = 0)  const override { return abs(a); }
+    string getName() const override { return "Absolute"; }
+    bool isBinary() const override { return false; }
 
 };
 
@@ -125,11 +127,11 @@ public:
 };
 
 void clearScreen() {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
 
 int main() {
@@ -155,22 +157,22 @@ int main() {
         MathOperation* operation = nullptr;
 
         // Create operation object
-        switch(op) {
-            case '+': operation = new Add(); break;
-            case '-': operation = new Subtract(); break;
-            case '*': operation = new Multiply(); break;
-            case '/': operation = new Divide(); break;
-            case '%': operation = new Modulus(); break;
-            case 'a': operation = new Absolute(); break;
-            case 's': operation = new Square(); break;
-            case 'r': operation = new SquareRoot(); break;
-            case 'f': operation = new Factorial(); break;
-            default:
-                cout << "Unknown operation! Please try again.\n";
-                cout << "Press Enter to continue...";
-                cin.ignore();
-                cin.get();
-                continue; // Skip the rest and show menu again
+        switch (op) {
+        case '+': operation = new Addition(); break;
+        case '-': operation = new Subtract(); break;
+        case '*': operation = new Multiply(); break;
+        case '/': operation = new Divide(); break;
+        case '%': operation = new Modulus(); break;
+        case 'a': operation = new Absolute(); break;
+        case 's': operation = new Square(); break;
+        case 'r': operation = new SquareRoot(); break;
+        case 'f': operation = new Factorial(); break;
+        default:
+            cout << "Unknown operation! Please try again.\n";
+            cout << "Press Enter to continue...";
+            cin.ignore();
+            cin.get();
+            continue; // Skip the rest and show menu again
         }
 
         try {
@@ -181,14 +183,16 @@ int main() {
                 cin >> a >> b;
                 clearScreen();
                 cout << "Result: " << operation->calculate(a, b) << endl;
-            } else {
+            }
+            else {
                 double a;
                 cout << "Enter a number: ";
                 cin >> a;
                 clearScreen();
                 cout << "Result: " << operation->calculate(a) << endl;
             }
-        } catch (const exception& e) {
+        }
+        catch (const exception& e) {
             clearScreen();
             cout << "Error: " << e.what() << endl;
         }
@@ -203,7 +207,6 @@ int main() {
 
     return 0;
 }
-
 
 
 
