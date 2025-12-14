@@ -141,7 +141,7 @@ int main() {
         cout << "Available operations:\n";
         cout << "+ - addition\n- - subtraction\n* - multiplication\n/ - division\n";
         cout << "% - modulus\n^ - power\na - absolute value\ns - square\nr - square root\n";
-        cout << "l - natural logarithm\nL - logarithm base 10\nf - factorial\nq - quit\n";
+        cout << "f - factorial\nq - quit\n";
 
         cout << "Enter operation: ";
         cin >> op;
@@ -164,7 +164,6 @@ int main() {
             case 'a': operation = new Absolute(); break;
             case 's': operation = new Square(); break;
             case 'r': operation = new SquareRoot(); break;
-            case 'l': operation = new Logarithm(); break;
             case 'f': operation = new Factorial(); break;
             default:
                 cout << "Unknown operation! Please try again.\n";
@@ -204,6 +203,7 @@ int main() {
 
     return 0;
 }
+
 
 
 
