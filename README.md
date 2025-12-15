@@ -28,7 +28,7 @@
 # Src commit my Team
 ![image](https://github.com/user-attachments/assets/ec92882d-c3f7-4f0c-bd46-8eecab193868)
 
-#start
+# start
 
 ```
 g++ -Wall -O name_your_program calculator.cpp
@@ -36,6 +36,6 @@ g++ -Wall -O name_your_program calculator.cpp
 
 
 
-#Link on reales
+# Link on reales
 
 https://github.com/Fadelovers/Team_calculator/releases/tag/Fade
