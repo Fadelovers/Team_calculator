@@ -1,4 +1,6 @@
 # Team Calc!!!
+[![Language](https://img.shields.io/badge/Language-c++-pink)](https://www.w3schools.com/html/default.asp)
+![Language](https://img.shields.io/badge/Type-app-black)
 
 Реализация калькулятора без Функции Log
 "Астафьев не сдал"
