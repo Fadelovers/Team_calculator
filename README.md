@@ -1,4 +1,5 @@
 # Team Calc!!!
+
 Реализация калькулятора без Функции Log
 "Астафьев не сдал"
 
@@ -26,6 +27,14 @@
 
 # Src commit my Team
 ![image](https://github.com/user-attachments/assets/ec92882d-c3f7-4f0c-bd46-8eecab193868)
+
+#start
+
+```
+g++ -Wall -O name_your_program calculator.cpp
+```
+
+
 
 #Link on reales
 
